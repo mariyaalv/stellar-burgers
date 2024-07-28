@@ -1,7 +1,17 @@
+import { SerializedError } from '@reduxjs/toolkit';
+
+export enum IngredientType {
+  bun = 'bun',
+  main = 'main',
+  sauce = 'sauce',
+  top = 'top',
+  bottom = 'bottom'
+}
+
 export type TIngredient = {
   _id: string;
   name: string;
-  type: string;
+  type: IngredientType;
   proteins: number;
   fat: number;
   carbohydrates: number;
@@ -38,3 +48,8 @@ export type TUser = {
 };
 
 export type TTabMode = 'bun' | 'sauce' | 'main';
+
+export type TResponseStatus = {
+  isLoading: boolean;
+  error: SerializedError['message'] | null;
+};

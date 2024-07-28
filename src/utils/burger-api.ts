@@ -61,7 +61,7 @@ type TIngredientsResponse = TServerResponse<{
   data: TIngredient[];
 }>;
 
-type TFeedsResponse = TServerResponse<{
+export type TFeedsResponse = TServerResponse<{
   orders: TOrder[];
   total: number;
   totalToday: number;
@@ -87,13 +87,16 @@ export const getFeedsApi = () =>
       return Promise.reject(data);
     });
 
-export const getOrdersApi = () =>
+export const getOrdersApi = (data?: string[]) =>
   fetchWithRefresh<TFeedsResponse>(`${URL}/orders`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json;charset=utf-8',
       authorization: getCookie('accessToken')
-    } as HeadersInit
+    } as HeadersInit,
+    body: JSON.stringify({
+      ingredients: data
+    })
   }).then((data) => {
     if (data?.success) return data.orders;
     return Promise.reject(data);
