@@ -4,22 +4,22 @@ import { OrderInfoUI } from '../ui/order-info';
 import { TIngredient } from '@utils-types';
 import { useDispatch, useSelector } from '../../services/store';
 import { selectIngredients } from '../../services/slices/ingredientsSlice';
-import { getOrderByNumber } from '../../services/slices/orderSlice';
-import { ordersInfoSelector } from '../../services/selectors/orderInfoSelector';
+import {
+  getOrderByNumber,
+  selectOrderInfo
+} from '../../services/slices/orderSlice';
 import { useParams } from 'react-router-dom';
 
 export const OrderInfo: FC = () => {
   const dispatch = useDispatch();
-  const { number } = useParams();
-  const orderData = useSelector(ordersInfoSelector(`${number}`));
+  const number = Number(useParams().number);
+  const orderData = useSelector(selectOrderInfo);
 
   const ingredients: TIngredient[] = useSelector(selectIngredients);
 
   useEffect(() => {
-    if (!orderData) {
-      dispatch(getOrderByNumber(+`${number}`));
-    }
-  }, [dispatch, orderData, number]);
+    dispatch(getOrderByNumber(number));
+  }, []);
 
   /* Готовим данные для отображения */
   const orderInfo = useMemo(() => {

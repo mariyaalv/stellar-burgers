@@ -13,9 +13,9 @@ export function ProtectedRoute({
   disallowIfAuthed
 }: ProtectedRouteProps) {
   const location = useLocation();
-  const { user, isAuth } = useSelector(selectUser);
+  const { user, isAuthChecked } = useSelector(selectUser);
 
-  if (!isAuth) {
+  if (!isAuthChecked) {
     return <Preloader />;
   }
 

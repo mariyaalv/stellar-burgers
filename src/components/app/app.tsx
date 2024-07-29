@@ -26,10 +26,8 @@ const App = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(checkUserAuth())
-      .unwrap()
-      .catch((err) => console.log(err));
-  }, [dispatch]);
+    dispatch(checkUserAuth());
+  }, []);
 
   function handleOnClose() {
     navigate(-1);
@@ -108,7 +106,7 @@ const App = () => {
           <Route
             path='/feed/:number'
             element={
-              <Modal title='' onClose={handleOnClose}>
+              <Modal title='Детали заказа' onClose={handleOnClose}>
                 <OrderInfo />
               </Modal>
             }
@@ -116,7 +114,7 @@ const App = () => {
           <Route
             path='/ingredients/:id'
             element={
-              <Modal title='' onClose={handleOnClose}>
+              <Modal title='Детали ингридиента' onClose={handleOnClose}>
                 <IngredientDetails />
               </Modal>
             }
@@ -125,7 +123,7 @@ const App = () => {
             path='/profile/orders/:number'
             element={
               <ProtectedRoute>
-                <Modal title='' onClose={handleOnClose}>
+                <Modal title='Информация о заказе' onClose={handleOnClose}>
                   <OrderInfo />
                 </Modal>
               </ProtectedRoute>

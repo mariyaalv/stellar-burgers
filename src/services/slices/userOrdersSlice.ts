@@ -25,6 +25,7 @@ const userOrdersSlice = createSlice({
       .addCase(getUserOrders.pending, (state) => {
         state.isLoading = true;
         state.error = null;
+        state.orders = [];
       })
       .addCase(getUserOrders.rejected, (state, action) => {
         state.isLoading = false;

@@ -2,12 +2,13 @@ import { FC, SyntheticEvent, useState } from 'react';
 import { LoginUI } from '@ui-pages';
 import { useDispatch, useSelector } from '../../services/store';
 import { selectUser, userLogin } from '../../services/slices/userSlice';
+import { Preloader } from '@ui';
 
 export const Login: FC = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { error } = useSelector(selectUser);
+  const { error, isLoading } = useSelector(selectUser);
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
@@ -17,13 +18,19 @@ export const Login: FC = () => {
   const errorText = error ?? undefined;
 
   return (
-    <LoginUI
-      errorText={errorText}
-      email={email}
-      setEmail={setEmail}
-      password={password}
-      setPassword={setPassword}
-      handleSubmit={handleSubmit}
-    />
+    <>
+      {isLoading ? (
+        <Preloader />
+      ) : (
+        <LoginUI
+          errorText={errorText}
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
+          handleSubmit={handleSubmit}
+        />
+      )}
+    </>
   );
 };
