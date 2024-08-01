@@ -4,21 +4,21 @@ import { OrderInfoUI } from '../ui/order-info';
 import { TIngredient } from '@utils-types';
 import { useDispatch, useSelector } from '../../services/store';
 import { selectIngredients } from '../../services/slices/ingredientsSlice';
-import {
-  getOrderByNumber,
-  selectOrderInfo
-} from '../../services/slices/orderSlice';
+import { getOrderByNumber } from '../../services/slices/orderSlice';
 import { useParams } from 'react-router-dom';
+import { ordersInfoSelector } from '../../services/selectors/orderInfoSelectors';
 
 export const OrderInfo: FC = () => {
   const dispatch = useDispatch();
   const number = Number(useParams().number);
-  const orderData = useSelector(selectOrderInfo);
+  const orderData = useSelector(ordersInfoSelector(`${number}`));
 
   const ingredients: TIngredient[] = useSelector(selectIngredients);
 
   useEffect(() => {
-    dispatch(getOrderByNumber(number));
+    if (!orderData) {
+      dispatch(getOrderByNumber(number));
+    }
   }, []);
 
   /* Готовим данные для отображения */

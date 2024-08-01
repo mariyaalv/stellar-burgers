@@ -18,6 +18,7 @@ import { ProtectedRoute } from '../protectedRoute';
 import { useEffect } from 'react';
 import { useDispatch } from '../../services/store';
 import { checkUserAuth } from '../../services/slices/userSlice';
+import { fetchIngredients } from '../../services/slices/ingredientsSlice';
 
 const App = () => {
   const location = useLocation();
@@ -27,6 +28,7 @@ const App = () => {
 
   useEffect(() => {
     dispatch(checkUserAuth());
+    dispatch(fetchIngredients());
   }, []);
 
   function handleOnClose() {
@@ -35,70 +37,69 @@ const App = () => {
 
   return (
     <div className={styles.app}>
+      <AppHeader />
       <Routes location={backgroundLocation || location}>
-        <Route path='/' element={<AppHeader />}>
-          <Route index element={<ConstructorPage />} />
-          <Route path='feed' element={<Feed />} />
-          <Route
-            path='login'
-            element={
-              <ProtectedRoute disallowIfAuthed>
-                <Login />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path='register'
-            element={
-              <ProtectedRoute disallowIfAuthed>
-                <Register />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path='forgot-password'
-            element={
-              <ProtectedRoute disallowIfAuthed>
-                <ForgotPassword />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path='reset-password'
-            element={
-              <ProtectedRoute disallowIfAuthed>
-                <ResetPassword />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path='profile'
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path='profile/orders'
-            element={
-              <ProtectedRoute>
-                <ProfileOrders />
-              </ProtectedRoute>
-            }
-          />
-          <Route path='*' element={<NotFound404 />} />
-          <Route path='feed/:number' element={<OrderInfo />} />
-          <Route path='ingredients/:id' element={<IngredientDetails />} />
-          <Route
-            path='profile/orders/:number'
-            element={
-              <ProtectedRoute>
-                <OrderInfo />
-              </ProtectedRoute>
-            }
-          />
-        </Route>
+        <Route path='/' element={<ConstructorPage />} />
+        <Route path='/feed' element={<Feed />} />
+        <Route
+          path='/login'
+          element={
+            <ProtectedRoute disallowIfAuthed>
+              <Login />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/register'
+          element={
+            <ProtectedRoute disallowIfAuthed>
+              <Register />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/forgot-password'
+          element={
+            <ProtectedRoute disallowIfAuthed>
+              <ForgotPassword />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/reset-password'
+          element={
+            <ProtectedRoute disallowIfAuthed>
+              <ResetPassword />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/profile'
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path='/profile/orders'
+          element={
+            <ProtectedRoute>
+              <ProfileOrders />
+            </ProtectedRoute>
+          }
+        />
+        <Route path='*' element={<NotFound404 />} />
+        <Route path='/feed/:number' element={<OrderInfo />} />
+        <Route path='/ingredients/:id' element={<IngredientDetails />} />
+        <Route
+          path='/profile/orders/:number'
+          element={
+            <ProtectedRoute>
+              <OrderInfo />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
 
       {backgroundLocation && (

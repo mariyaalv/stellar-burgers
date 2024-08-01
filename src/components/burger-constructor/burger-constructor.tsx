@@ -8,6 +8,7 @@ import {
 } from '../../services/slices/burgerConstructorSlice';
 import { useDispatch, useSelector } from '../../services/store';
 import {
+  clearOrder,
   createOrder,
   selectOrderInfo,
   selectOrderRequest
@@ -44,6 +45,7 @@ export const BurgerConstructor: FC = () => {
   };
   const closeOrderModal = () => {
     dispatch(resetConstructor());
+    dispatch(clearOrder());
   };
 
   const price = useMemo(
