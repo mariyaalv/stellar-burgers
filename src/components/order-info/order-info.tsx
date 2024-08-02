@@ -1,7 +1,7 @@
 import { FC, useEffect, useMemo } from 'react';
 import { Preloader } from '../ui/preloader';
 import { OrderInfoUI } from '../ui/order-info';
-import { TIngredient } from '@utils-types';
+import { IngredientType, TIngredient } from '@utils-types';
 import { useDispatch, useSelector } from '../../services/store';
 import { selectIngredients } from '../../services/slices/ingredientsSlice';
 import { getOrderByNumber } from '../../services/slices/orderSlice';
@@ -13,7 +13,7 @@ export const OrderInfo: FC = () => {
   const number = Number(useParams().number);
   const orderData = useSelector(ordersInfoSelector(`${number}`));
 
-  const ingredients: TIngredient[] = useSelector(selectIngredients);
+  const ingredients = useSelector(selectIngredients);
 
   useEffect(() => {
     if (!orderData) {

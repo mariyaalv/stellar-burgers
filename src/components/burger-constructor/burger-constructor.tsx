@@ -35,12 +35,17 @@ export const BurgerConstructor: FC = () => {
   const onOrderClick = () => {
     if (!constructorItems.bun || orderRequest) return;
     if (!user) {
-      navigate('/login');
+      navigate('/login'), { replace: true };
+      return;
     }
     const ingredient = constructorItems.ingredients.map(
       (ingredient) => ingredient._id
     );
-    const order = [constructorItems?.bun._id, ...ingredient];
+    const order = [
+      constructorItems?.bun._id,
+      ...ingredient,
+      constructorItems?.bun._id
+    ];
     dispatch(createOrder(order));
   };
   const closeOrderModal = () => {
