@@ -1,5 +1,6 @@
 import { OrderInfoUI } from '@ui';
 import type { Meta, StoryObj } from '@storybook/react';
+import { IngredientType } from '@utils-types';
 
 const meta = {
   title: 'Example/OrderInfo',
@@ -22,7 +23,7 @@ export const DefaultOrderInfo: Story = {
         bun: {
           _id: '211',
           name: 'Булка',
-          type: 'bun',
+          type: IngredientType.bun,
           proteins: 12,
           fat: 23,
           carbohydrates: 45,

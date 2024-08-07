@@ -1,6 +1,7 @@
 import React from 'react';
 import { BurgerIngredientUI } from '@ui';
 import type { Meta, StoryObj } from '@storybook/react';
+import { IngredientType } from '@utils-types';
 
 const meta = {
   title: 'Example/BurgerIngredient',
@@ -28,7 +29,7 @@ export const DefaultIngredient: Story = {
     ingredient: {
       _id: '111',
       name: 'Булка',
-      type: 'top',
+      type: IngredientType.top,
       proteins: 12,
       fat: 33,
       carbohydrates: 22,
