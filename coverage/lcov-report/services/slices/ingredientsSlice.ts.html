@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for services/slices/feedSlice.ts</title>
+    <title>Code coverage report for services/slices/ingredientsSlice.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">services/slices</a> feedSlice.ts</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">services/slices</a> ingredientsSlice.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">98.21% </span>
+                <span class="strong">98.52% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>55/56</span>
+                <span class='fraction'>67/68</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/6</span>
+                <span class='fraction'>12/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>6/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">98.21% </span>
+                <span class="strong">98.52% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>55/56</span>
+                <span class='fraction'>67/68</span>
             </div>
         
             
@@ -119,11 +119,19 @@
 <a name='L54'></a><a href='#L54'>54</a>
 <a name='L55'></a><a href='#L55'>55</a>
 <a name='L56'></a><a href='#L56'>56</a>
-<a name='L57'></a><a href='#L57'>57</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -175,62 +183,90 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { getFeedsApi } from './../../utils/burger-api';
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { getIngredientsApi } from './../../utils/burger-api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { TOrder, TResponseStatus } from './../../utils/types';
+import {
+  IngredientType,
+  TIngredient,
+  TResponseStatus
+} from './../../utils/types';
 &nbsp;
-export interface TFeedSlice extends TResponseStatus {
-  orders: TOrder[];
-  feed: {
-    total: number;
-    totalToday: number;
-  };
+export interface TIngredientsSlice extends TResponseStatus {
+  ingredients: TIngredient[];
 }
 &nbsp;
-export const initialState: TFeedSlice = {
-  orders: [],
-  feed: {
-    total: 0,
-    totalToday: 0
-  },
+export const initialState: TIngredientsSlice = {
+  ingredients: [],
   isLoading: false,
   error: null
 };
 &nbsp;
-export const fetchFeeds = createAsyncThunk('feed/get', async () =&gt;
-<span class="cstat-no" title="statement not covered" >  getFeedsApi()</span>
+export const fetchIngredients = createAsyncThunk('ingredients/get', async () =&gt;
+<span class="cstat-no" title="statement not covered" >  getIngredientsApi()</span>
 );
 &nbsp;
-const feedSlice = createSlice({
-  name: 'feed',
+const ingredientsSlice = createSlice({
+  name: 'ingredients',
   initialState,
   reducers: {},
   extraReducers: (builder) =&gt; {
     builder
-      .addCase(fetchFeeds.pending, (state) =&gt; {
+      .addCase(fetchIngredients.pending, (state) =&gt; {
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(fetchFeeds.rejected, (state, action) =&gt; {
+      .addCase(fetchIngredients.rejected, (state, action) =&gt; {
         state.isLoading = false;
         state.error = action.error.message;
       })
-      .addCase(fetchFeeds.fulfilled, (state, action) =&gt; {
+      .addCase(fetchIngredients.fulfilled, (state, action) =&gt; {
         state.isLoading = false;
-        state.orders = action.payload.orders;
-        state.feed.total = action.payload.total;
-        state.feed.totalToday = action.payload.totalToday;
+        state.ingredients = action.payload;
       });
   },
   selectors: {
-    selectOrders: (state) =&gt; state.orders,
-    selectFeed: (state) =&gt; state.feed
+    selectBuns: (state) =&gt;
+      state.ingredients.filter(
+        (ingredient) =&gt; ingredient.type === IngredientType.bun
+      ),
+    selectMains: (state) =&gt;
+      state.ingredients.filter(
+        (ingredient) =&gt; ingredient.type === IngredientType.main
+      ),
+    selectSauces: (state) =&gt;
+      state.ingredients.filter(
+        (ingredient) =&gt; ingredient.type === IngredientType.sauce
+      ),
+    selectIngredients: (state) =&gt; state.ingredients,
+    selectisIngredientsLoading: (state) =&gt; state.isLoading
   }
 });
 &nbsp;
-export const { selectOrders, selectFeed } = feedSlice.selectors;
+export const {
+  selectisIngredientsLoading,
+  selectIngredients,
+  selectBuns,
+  selectMains,
+  selectSauces
+} = ingredientsSlice.selectors;
 &nbsp;
-export default feedSlice.reducer;
+export default ingredientsSlice.reducer;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
