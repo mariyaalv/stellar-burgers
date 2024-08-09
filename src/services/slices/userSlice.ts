@@ -6,22 +6,22 @@ import {
   logoutApi,
   registerUserApi,
   updateUserApi
-} from '@api';
+} from './../../utils/burger-api';
 import {
   createAsyncThunk,
   createSlice,
   isPending,
   isRejected
 } from '@reduxjs/toolkit';
-import { TResponseStatus, TUser } from '@utils-types';
+import { TResponseStatus, TUser } from './../../utils/types';
 import { deleteCookie, getCookie, setCookie } from '../../utils/cookie';
 
-interface IUserSlice extends TResponseStatus {
+export interface IUserSlice extends TResponseStatus {
   user: TUser | null;
   isAuthChecked: boolean;
 }
 
-const initialState: IUserSlice = {
+export const initialState: IUserSlice = {
   user: null,
   isAuthChecked: false, // флаг для статуса проверки токена пользователя
   isLoading: false,

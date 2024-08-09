@@ -92,11 +92,14 @@
     "build-storybook": "storybook build",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src",
     "lint:fix": "npm run lint -- --fix",
-    "format": "prettier ./src --write"
+    "format": "prettier ./src --write",
+    "cypress": "cypress open",
+    "test": "jest"
   },
   "eslintConfig": {
     "extends": [
-      "plugin:storybook/recommended"
+      "plugin:storybook/recommended",
+      "plugin:cypress/recommended"
     ]
   }
 }

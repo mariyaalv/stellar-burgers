@@ -5,14 +5,14 @@ import {
   isPending,
   isRejected
 } from '@reduxjs/toolkit';
-import { TOrder, TResponseStatus } from '@utils-types';
+import { TOrder, TResponseStatus } from './../../utils/types';
 
-interface TOrderSlice extends TResponseStatus {
+export interface TOrderSlice extends TResponseStatus {
   orderInfo: TOrder | null;
   orderRequest: boolean;
 }
 
-const initialState: TOrderSlice = {
+export const initialState: TOrderSlice = {
   orderInfo: null,
   isLoading: false,
   orderRequest: false,
