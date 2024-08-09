@@ -93,12 +93,13 @@
     "lint": "eslint --ext .js,.jsx,.ts,.tsx ./src",
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier ./src --write",
-    "cypress:open": "cypress open",
+    "cypress": "cypress open",
     "test": "jest"
   },
   "eslintConfig": {
     "extends": [
-      "plugin:storybook/recommended"
+      "plugin:storybook/recommended",
+      "plugin:cypress/recommended"
     ]
   }
 }
