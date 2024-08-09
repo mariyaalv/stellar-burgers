@@ -1,10 +1,9 @@
 /// <reference path="../support/index.d.ts" />
+Cypress.Commands.add('getElement', (value) => {
+  cy.get(`[data-cy=${value}]`);
+});
 
 describe('add ingredients to constructor', function () {
-  Cypress.Commands.add('getElement', (value) => {
-    cy.get(`[data-cy=${value}]`);
-  });
-
   //create value
   const bun = 'bun';
   const main = 'main';
