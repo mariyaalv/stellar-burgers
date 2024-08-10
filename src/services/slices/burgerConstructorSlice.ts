@@ -3,14 +3,14 @@ import {
   IngredientType,
   TConstructorIngredient,
   TIngredient
-} from '@utils-types';
+} from './../../utils/types';
 
-interface TBurgerConstructorSlice {
+export interface TBurgerConstructorSlice {
   bun: TConstructorIngredient | TIngredient | null;
   ingredients: TConstructorIngredient[];
 }
 
-const initialState: TBurgerConstructorSlice = {
+export const initialState: TBurgerConstructorSlice = {
   bun: null,
   ingredients: []
 };

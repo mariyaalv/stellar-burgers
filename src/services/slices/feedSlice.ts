@@ -1,8 +1,8 @@
-import { getFeedsApi } from '@api';
+import { getFeedsApi } from './../../utils/burger-api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { TOrder, TResponseStatus } from '@utils-types';
+import { TOrder, TResponseStatus } from './../../utils/types';
 
-interface TFeedSlice extends TResponseStatus {
+export interface TFeedSlice extends TResponseStatus {
   orders: TOrder[];
   feed: {
     total: number;
@@ -10,7 +10,7 @@ interface TFeedSlice extends TResponseStatus {
   };
 }
 
-const initialState: TFeedSlice = {
+export const initialState: TFeedSlice = {
   orders: [],
   feed: {
     total: 0,
